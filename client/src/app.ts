@@ -4,7 +4,7 @@ import {Items} from './items/items.component';
 
 @Component({
   selector: 'my-app',
-  template: `<router-outlet></router-outlet>`,
+  template: require('./app.html'),
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
