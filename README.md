@@ -1,6 +1,9 @@
 ## RESTful Angular 2 application
-
 A RESTful master-detail application built using Angular 2.
+
+## Dependencies
+- You must have `node v >= 4.0` and `npm` installed (via `brew install node` or [NodeJS.org](https://nodejs.org/en/));
+- `npm i -g typings webpack-dev-server webpack rimraf`
 
 ### Getting Started
 
@@ -8,9 +11,9 @@ There are two main parts to this application. The first is the server, for which
 
 To get started run the commands below.
 
-```
-$ git clone https://github.com/simpulton/angular2-rest-app.git
-$ cd angular2-rest-app
+```bash
+$ git clone https://github.com/onehungrymind/fem-ng2-rest-app.git
+$ cd fem-ng2-rest-app
 $ npm install
 $ npm start
 ```

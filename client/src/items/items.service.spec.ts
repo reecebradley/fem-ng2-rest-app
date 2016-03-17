@@ -7,7 +7,7 @@ import {
   beforeEach} from 'angular2/testing';
 import { provide } from 'angular2/core';
 import { HTTP_PROVIDERS, Http, XHRBackend, Response, ResponseOptions } from 'angular2/http';
-import { ItemsService } from './items';
+import { ItemsService } from './items.service';
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 describe('ItemsService', () => {
