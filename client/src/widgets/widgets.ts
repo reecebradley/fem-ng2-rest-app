@@ -17,11 +17,8 @@ import {RouteParams} from 'angular2/router';
 export class Widgets {
   widgets = [];
   activeWidget = {};
-  
-  constructor(_widgetsService: WidgetsService, private _params: RouteParams) {
+
+  constructor(_widgetsService: WidgetsService) {
     this.widgets = _widgetsService.widgets;
-    this.activeWidget = this.widgets.find(
-      widget => widget.id === parseInt(this._params.get('id'))
-    )
   }
 }
