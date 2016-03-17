@@ -10,4 +10,8 @@ import {Items} from './items/items.component';
 @RouteConfig([
   {path: '/items', name: 'Items', component: Items, useAsDefault: true}
 ])
-export class App {}
+export class App {
+  links = {
+    items: ['Items']
+  }
+}
