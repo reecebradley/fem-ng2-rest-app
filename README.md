@@ -14,6 +14,7 @@ To get started run the commands below.
 ```bash
 $ git clone https://github.com/onehungrymind/fem-ng2-rest-app.git
 $ cd fem-ng2-rest-app
+$ npm install -g json-server
 $ npm install
 $ npm start
 ```
