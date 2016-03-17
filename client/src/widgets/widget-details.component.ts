@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter} from 'angular2/core';
-import { FORM_DIRECTIVES, FormBuilder, Validators } from 'angular2/common';
+import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
+import {FORM_DIRECTIVES, FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from 'angular2/common';
 import {Widget} from "./widget.model";
 
 @Component({
@@ -11,35 +11,38 @@ import {Widget} from "./widget.model";
       <h2 class="mdl-card__title-text" *ngIf="!selectedWidget.id">Create New Widget</h2>
     </div>
     <div class="mdl-card__supporting-text">
-      <form #widgetForm="ngForm" novalidate>
+      <form [ngFormModel]="widgetForm"
+          (submit)="saved.emit(selectedWidget)" novalidate>
           <div class="mdl-textfield mdl-js-textfield">
             <label>Widget Name</label>
-            <input [(ngModel)]="selectedWidget.name"
-              ngControl="widgetName"
+            <input ngControl="widgetName"
+              [(ngModel)]="selectedWidget.name"
               placeholder="Enter a name"
               class="mdl-textfield__input" type="text">
           </div>
 
           <div class="mdl-textfield mdl-js-textfield">
             <label>Widget Price</label>
-            <input [(ngModel)]="selectedWidget.price"
+            <input ngControl="widgetPrice"
+              [(ngModel)]="selectedWidget.price"
               placeholder="Enter a price"
-              ngControl="widgetPrice"
               class="mdl-textfield__input" type="text">
           </div>
+          <button type="submit" [disabled]="!widgetForm.valid" class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect">Save</button>
       </form>
     </div>
-    <div class="mdl-cardactions">
-        <button type="submit" (click)="saved.emit(selectedWidget)"
-          [disabled]="!widgetForm.valid"
-          class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect">Save</button>
-    </div>
   </div>
-   `
+   `,
+  styles: [`
+    .error { color: red; }
+  `],
+  providers: [FORM_PROVIDERS],
+  directives: [FORM_DIRECTIVES]
 })
-export class WidgetDetails {
+export class WidgetDetails implements OnInit {
   originalName: string;
   selectedWidget: Widget;
+  widgetForm: ControlGroup;
   @Output() saved = new EventEmitter();
 
   @Input() set widget(value: Widget){
@@ -47,10 +50,12 @@ export class WidgetDetails {
     this.selectedWidget = Object.assign({}, value);
   }
 
-  constructor(private _builder: FormBuilder) {
-    //this.widgetForm = _builder.group({
-    //  widgetName: [this.selectedWidget.name, Validators.required],
-    //  widgetPrice: [this.selectedWidget.price, Validators.required]
-    //});
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit() {
+    this.widgetForm = this.fb.group({
+      widgetName: [this.selectedWidget.name, Validators.required],
+      widgetPrice: [this.selectedWidget.price, Validators.required]
+    });
   }
 }

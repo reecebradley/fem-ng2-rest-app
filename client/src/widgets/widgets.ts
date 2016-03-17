@@ -12,7 +12,7 @@ import {WidgetDetails} from './widget-details.component';
         (selected)="selectWidget($event)"></widgets-list>
       </div>
       <div class="mdl-cell mdl-cell--6-col">
-        <widget-details [widget]="selectedWidget"></widget-details>
+        <widget-details (saved)="saveWidget($event)" [widget]="selectedWidget"></widget-details>
       </div>
     </div>
   `,
@@ -34,5 +34,9 @@ export class Widgets {
 
   selectWidget(widget) {
     this.selectedWidget = widget;
+  }
+  
+  saveWidget(widget) {
+    console.log('widget', widget);
   }
 }
