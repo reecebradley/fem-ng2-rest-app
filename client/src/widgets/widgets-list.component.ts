@@ -1,4 +1,5 @@
 import {Component, Input, Output, EventEmitter} from 'angular2/core';
+import {Widget} from './widget.model';
 
 @Component({
     selector: 'widgets-list',
@@ -16,6 +17,5 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
 })
 export class WidgetsList {
   @Input() widgets: any[];
-  @Output() selected: EventEmitter = new EventEmitter();
-
+  @Output() selected: EventEmitter<Widget> = new EventEmitter();
 }
