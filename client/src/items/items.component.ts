@@ -2,10 +2,13 @@ import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
 import {ItemsService, Item} from './items.service';
 import {ItemsList} from './items-list.component';
 import {ItemDetail} from './item-detail.component';
+import {Widgets} from '../widgets/widgets';
 
 @Component({
   selector: 'items',
   template: `
+  <widgets></widgets>
+  <hr>
   <div class="mdl-grid items">
     <div class="mdl-cell mdl-cell--6-col">
       <items-list [items]="items"
@@ -27,7 +30,7 @@ import {ItemDetail} from './item-detail.component';
     }
   `],
   providers: [ItemsService],
-  directives: [ItemsList, ItemDetail]
+  directives: [ItemsList, ItemDetail, Widgets]
 })
 export class Items implements OnInit {
   items: Array<Item>;
