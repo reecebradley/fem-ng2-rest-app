@@ -17,14 +17,18 @@ body {
   margin: 0 auto;
   padding: 0;
 }
+
+.widget-card.mdl-card,
 .item-card.mdl-card {
   width: 100%;
   min-height: inherit;
   cursor: pointer;
 }
+.widget-card .mdl-textfield,
 .item-card .mdl-textfield {
   width: 100%;
 }
+.widget-card .mdl-textfield__input,
 .item-card .mdl-textfield__input {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .12);
@@ -37,6 +41,8 @@ body {
   text-align: left;
   color: inherit;
 }
+
+.widget-card label,
 .item-card label {
   font-size: 12px;
   font-weight: bold;

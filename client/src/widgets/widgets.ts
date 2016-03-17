@@ -6,16 +6,21 @@ import {WidgetDetails} from './widget-details.component';
 @Component({
   selector: 'widgets',
   template: `
-    <div class="mdl-grid items">
+    <div class="mdl-grid widgets">
       <div class="mdl-cell mdl-cell--6-col">
         <widgets-list [widgets]="widgets"
         (selected)="selectWidget($event)"></widgets-list>
       </div>
       <div class="mdl-cell mdl-cell--6-col">
-        <widget-details [selectedWidget]="selectedWidget"></widget-details>
+        <widget-details [widget]="selectedWidget"></widget-details>
       </div>
     </div>
   `,
+  styles: [`
+    .widgets {
+      padding: 20px;
+    }
+  `],
   directives: [WidgetsList, WidgetDetails],
   providers: [WidgetsService]
 })
