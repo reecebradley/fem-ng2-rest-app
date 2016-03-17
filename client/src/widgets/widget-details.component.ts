@@ -39,7 +39,7 @@ import {Widget} from "./widget.model";
 })
 export class WidgetDetails {
   originalName: string;
-  selectedWidget: Widget;
+  selectedWidget: Widget = {};
   @Output() saved = new EventEmitter();
 
   @Input() set widget(value: Widget){
@@ -47,10 +47,5 @@ export class WidgetDetails {
     this.selectedWidget = Object.assign({}, value);
   }
 
-  constructor(private _builder: FormBuilder) {
-    //this.widgetForm = _builder.group({
-    //  widgetName: [this.selectedWidget.name, Validators.required],
-    //  widgetPrice: [this.selectedWidget.price, Validators.required]
-    //});
-  }
+  constructor(private _builder: FormBuilder) {}
 }
