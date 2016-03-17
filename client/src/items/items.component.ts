@@ -6,17 +6,26 @@ import {ItemDetail} from './item-detail.component';
 @Component({
   selector: 'items',
   template: `
-  <div class="mdl-cell mdl-cell--6-col">
-    <items-list [items]="items"
+  <div class="mdl-grid items">
+    <div class="mdl-cell mdl-cell--6-col">
+      <items-list [items]="items"
       (selected)="selectItem($event)" (deleted)="deleteItem($event)">
-    </items-list>
-  </div>
-  <div class="mdl-cell mdl-cell--6-col">
-    <item-detail
+      </items-list>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col">
+      <item-detail
       (saved)="saveItem($event)" (cancelled)="resetItem($event)"
-      [item]="selectedItem">Select an Item</item-detail>
+      [item]="selectedItem">
+        Select an Item
+      </item-detail>
+    </div>
   </div>
   `,
+  styles: [`
+    .items {
+      padding: 20px;
+    }
+  `],
   providers: [ItemsService],
   directives: [ItemsList, ItemDetail]
 })
