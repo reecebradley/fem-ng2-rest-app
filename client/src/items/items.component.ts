@@ -3,11 +3,12 @@ import {ItemsService, Item} from './items.service';
 import {ItemsList} from './items-list.component';
 import {ItemDetail} from './item-detail.component';
 import {Widgets} from '../widgets/widgets';
+import {Router} from 'angular2/router';
 
 @Component({
   selector: 'items',
   template: `
-  <widgets></widgets>
+  <button (click)="gotoWidgets()">widgets</button>
   <hr>
   <div class="mdl-grid items">
     <div class="mdl-cell mdl-cell--6-col">
@@ -36,13 +37,17 @@ export class Items implements OnInit {
   items: Array<Item>;
   selectedItem: Item;
 
-  constructor(private itemsService: ItemsService) {}
+  constructor(private itemsService: ItemsService, private _router: Router) {}
 
   ngOnInit() {
     this.itemsService.loadItems()
       .then(items => {
         this.items = items;
       });
+  }
+  
+  gotoWidgets(id: number=1) {
+    this._router.navigate(['Widgets', {id}]);
   }
 
   resetItem() {

@@ -1,17 +1,27 @@
 import {Component} from 'angular2/core'
 import {WidgetsService} from './widgets-service';
+import {RouteParams} from 'angular2/router';
 
 @Component({
   selector: 'widgets',
   template: `
     <h1>Holla at yer widgets!</h1>
+    <div class="active-widget">
+      {{activeWidget.name}}
+      {{activeWidget.description}}
+    </div>
     <pre>{{widgets | json}}</pre>
   `,
   providers: [WidgetsService]
 })
 export class Widgets {
   widgets = [];
-  constructor(_widgetsService: WidgetsService) {
+  activeWidget = {};
+  
+  constructor(_widgetsService: WidgetsService, private _params: RouteParams) {
     this.widgets = _widgetsService.widgets;
+    this.activeWidget = this.widgets.find(
+      widget => widget.id === parseInt(this._params.get('id'))
+    )
   }
 }

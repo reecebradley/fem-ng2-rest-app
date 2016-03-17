@@ -2,5 +2,9 @@ import {Injectable} from 'angular2/core';
 
 @Injectable()
 export class WidgetsService {
-  widgets = [{name: 'Widget 01', description: 'This is a widget'}];
+  widgets = [1,2,3,4,5].map(i => ({
+    id: i,
+    name: `Widget${i}`,
+    description: `I am widget ${i}`
+  }));
 }
