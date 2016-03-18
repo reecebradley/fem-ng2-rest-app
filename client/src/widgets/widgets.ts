@@ -12,7 +12,10 @@ import {WidgetDetails} from './widget-details.component';
         (selected)="selectWidget($event)"></widgets-list>
       </div>
       <div class="mdl-cell mdl-cell--6-col">
-        <widget-details [widget]="selectedWidget"></widget-details>
+        <widget-details [widget]="selectedWidget"
+          (create)="createWidget($event)"
+          (update)="updateWidget($event)">
+        </widget-details>
       </div>
     </div>
   `,
@@ -27,12 +30,24 @@ import {WidgetDetails} from './widget-details.component';
 export class Widgets {
   widgets = [];
   selectedWidget = {};
-
-  constructor(_widgetsService: WidgetsService) {
-    this.widgets = _widgetsService.widgets;
+  constructor(private _widgetsService: WidgetsService) {
+    this.fetchWidgets();
+  }
+  
+  fetchWidgets() {
+    this._widgetsService.fetchWidgets()
+    .subscribe(widgets => this.widgets = widgets);
   }
 
   selectWidget(widget) {
     this.selectedWidget = widget;
+  }
+  
+  createWidget(widget){
+    this._widgetsService.createOne(widget)
+    .subscribe(res => this.widgets.push(res));
+  }
+  updateWidget(widget) {
+    console.log('update', widget)
   }
 }

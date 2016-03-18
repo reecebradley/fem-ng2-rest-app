@@ -16,5 +16,16 @@
       "description": "This is a lovely item"
     }
   ],
-  "widgets": []
+  "widgets": [
+    {
+      "id": 3,
+      "name": "Item 3",
+      "description": "This is a lovely item",
+      "price": 30
+    },
+    {
+      "id": 4
+    }
+  ],
+  "cookies": []
 }

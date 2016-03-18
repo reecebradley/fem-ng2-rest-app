@@ -1,11 +1,21 @@
 import {Injectable} from 'angular2/core';
+import {Http} from  'angular2/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class WidgetsService {
-  widgets = [
-    {id: 1, name: 'Widget 01', price: 100},
-    {id: 2, name: 'Widget 02', price: 200},
-    {id: 3, name: 'Widget 03', price: 300},
-    {id: 4, name: 'Widget 04', price: 400}
-  ];
+  widgets = [];
+  private url = 'http://localhost:3000/widgets';
+  
+  constructor(private _http: Http){}
+  
+  fetchWidgets() {
+    return this._http.get(this.url)
+    .map(res => res.json());
+  }
+  
+  createOne(widget) {
+    return this._http.post(this.url, JSON.stringify(widget))
+    .map(res => res.json());
+  }
 }

@@ -23,9 +23,9 @@ export class App {
   posts = []
   
   constructor(redditService: RedditService) {
-    redditService.fetchFrontPage()
-    .subscribe(data => {
-      this.posts = data;
-    });
+    // redditService.fetchFrontPage()
+    // .subscribe(data => {
+    //   this.posts = data;
+    // });
   }
 }
